@@ -1,7 +1,8 @@
+import { Response, HomeProps } from 'utils/interfaces';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
-
+import { baseURL, fetchAPI } from 'utils/fetchAPI';
 
 interface BannerProps {
   purpose: string;
@@ -37,7 +38,7 @@ const Banner = ({
         <Text fontSize={'lg'} paddingTop="3" paddingBottom="3" color="gray.700">
           {desc1} <br /> {desc2}
         </Text>
-        <Button fontSize={'xl'} bg="blue.300" color="white">
+        <Button fontSize={'xl'}>
           <Link href={linkName}>{buttonText}</Link>
         </Button>
       </Box>
@@ -45,9 +46,9 @@ const Banner = ({
   );
 };
 
-const Home = () => {
+const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
   return (
-    <div>
+    <Box>
       <Banner
         purpose="RENT A HOME"
         title1="Rental Homes for "
@@ -58,18 +59,35 @@ const Home = () => {
         linkName="/search?purpose=for-rent"
         imageURL="/img-1.jpg"
       />
+      <Flex flexWrap={'wrap'}></Flex>
       <Banner
         purpose="BUY A HOME"
-        title1="Rental Homes for "
-        title2="Everyone"
+        title1="Find, Buy & Own Your "
+        title2="Own Home"
         desc1="Explore Apartments, Villas, Homes"
         desc2="and more"
-        buttonText="Explore Renting"
-        linkName="/search?purpose=for-rent"
+        buttonText="Explore Buying"
+        linkName="/search?purpose=for-sale"
         imageURL="/img-2.jpg"
       />
-    </div>
+    </Box>
   );
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const propertyForSale = await fetchAPI(
+    `${baseURL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
+  );
+  const propertyForRent = await fetchAPI(
+    `${baseURL}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
+  );
+
+  return {
+    props: {
+      propertiesForSale: propertyForSale?.hits,
+      propertiesForRent: propertyForRent?.hits,
+    },
+  };
+}
