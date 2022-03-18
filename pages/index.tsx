@@ -26,7 +26,7 @@ const Banner = ({
 }: BannerProps) => {
   return (
     <Flex flexWrap={'wrap'} justifyContent="center" alignItems={'center'} m="10">
-      <Image src={imageURL} width={500} height={300} alt="banner" />
+      <Image src={imageURL} width={500} height={300} alt="banner" quality={'40'} />
       <Box p="5">
         <Text color="gray.500" fontSize={'sm'} fontWeight="medium">
           {purpose}
@@ -48,8 +48,26 @@ const Banner = ({
 const Home = () => {
   return (
     <div>
-      <Banner purpose="For Sale" />
-      <Banner purpose="For Rent" />
+      <Banner
+        purpose="RENT A HOME"
+        title1="Rental Homes for "
+        title2="Everyone"
+        desc1="Explore Apartments, Villas, Homes"
+        desc2="and more"
+        buttonText="Explore Renting"
+        linkName="/search?purpose=for-rent"
+        imageURL="/img-1.jpg"
+      />
+      <Banner
+        purpose="BUY A HOME"
+        title1="Rental Homes for "
+        title2="Everyone"
+        desc1="Explore Apartments, Villas, Homes"
+        desc2="and more"
+        buttonText="Explore Renting"
+        linkName="/search?purpose=for-rent"
+        imageURL="/img-2.jpg"
+      />
     </div>
   );
 };
