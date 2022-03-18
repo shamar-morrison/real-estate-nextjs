@@ -59,7 +59,7 @@ const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
         linkName="/search?purpose=for-rent"
         imageURL="/img-1.jpg"
       />
-      <Flex flexWrap={'wrap'}></Flex>
+      <Flex flexWrap={'wrap'}>{}</Flex>
       <Banner
         purpose="BUY A HOME"
         title1="Find, Buy & Own Your "

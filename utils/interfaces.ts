@@ -13,6 +13,6 @@ export interface Response {
 }
 
 export interface HomeProps {
-  propertiesForSale: Response;
-  propertiesForRent: Response;
+  propertiesForSale: Array<Response>;
+  propertiesForRent: Array<Response>;
 }
