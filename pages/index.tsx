@@ -1,8 +1,9 @@
-import { Response, HomeProps } from 'utils/interfaces';
+import { PropertyInterface, HomeProps } from 'utils/interfaces';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
 import { baseURL, fetchAPI } from 'utils/fetchAPI';
+import Property from 'components/Property';
 
 interface BannerProps {
   purpose: string;
@@ -59,7 +60,11 @@ const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
         linkName="/search?purpose=for-rent"
         imageURL="/img-1.jpg"
       />
-      <Flex flexWrap={'wrap'}>{}</Flex>
+      <Flex flexWrap={'wrap'}>
+        {propertiesForRent.map(item => (
+          <Property property={item} key={item.id} />
+        ))}
+      </Flex>
       <Banner
         purpose="BUY A HOME"
         title1="Find, Buy & Own Your "
@@ -70,6 +75,9 @@ const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
         linkName="/search?purpose=for-sale"
         imageURL="/img-2.jpg"
       />
+      {propertiesForSale.map(item => (
+        <Property property={item} key={item.id} />
+      ))}
     </Box>
   );
 };

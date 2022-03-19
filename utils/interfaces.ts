@@ -1,18 +1,41 @@
-export interface Response {
+export interface PropertyInterface {
   id: number;
-  name: string;
-  name_l: string;
-  agentsCount: number;
-  externalID: string;
-  product: string;
-  productScore: number;
-  location: string;
-  location_l: string;
-  slug: string;
-  slug_l: string;
+  coverPhoto: CoverPhoto;
+  rentFrequency: string;
+  rooms: number;
+  baths: number;
+  title: string;
+  price: number;
+  area: number;
+  agency: Agency;
+  isVerified: boolean;
+  externalId: string;
 }
 
 export interface HomeProps {
-  propertiesForSale: Array<Response>;
-  propertiesForRent: Array<Response>;
+  propertiesForSale: Array<PropertyInterface>;
+  propertiesForRent: Array<PropertyInterface>;
+}
+
+interface CoverPhoto {
+  id: number;
+  externalID: string;
+  title: string | null;
+  url: string;
+  orderIndex: number;
+  nimaScore: number;
+  main: boolean;
+}
+
+interface Agency {
+  id: number;
+  objectID: number;
+  name: string;
+  externalID: string;
+  product: string;
+  productScore: number;
+  logo: { id: number; url: string };
+  slug: string;
+  tier: number;
+  commercialNumber: string | number | null;
 }
