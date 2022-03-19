@@ -48,6 +48,7 @@ const Banner = ({
 };
 
 const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
+  console.log('propertiesForSale', propertiesForSale);
   return (
     <Box>
       <Banner

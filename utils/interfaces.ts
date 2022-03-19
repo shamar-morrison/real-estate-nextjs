@@ -9,7 +9,7 @@ export interface PropertyInterface {
   area: number;
   agency: Agency;
   isVerified: boolean;
-  externalId: string;
+  externalID: string;
 }
 
 export interface HomeProps {
