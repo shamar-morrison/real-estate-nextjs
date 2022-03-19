@@ -7,7 +7,7 @@ export interface PropertyInterface {
   title: string;
   price: number;
   area: number;
-  agency: Agency;
+  agency: Agency | null;
   isVerified: boolean;
   externalID: string;
 }
@@ -34,7 +34,7 @@ interface Agency {
   externalID: string;
   product: string;
   productScore: number;
-  logo: { id: number; url: string };
+  logo: { id: number; url: string } | null;
   slug: string;
   tier: number;
   commercialNumber: string | number | null;
