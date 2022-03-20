@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Flex, Box, Text, Button } from '@chakra-ui/react';
 import { baseURL, fetchAPI } from 'utils/fetchAPI';
 import Property from 'components/Property';
+import Head from 'next/head';
 
 interface BannerProps {
   purpose: string;
@@ -48,38 +49,46 @@ const Banner = ({
 };
 
 const Home = ({ propertiesForSale, propertiesForRent }: HomeProps) => {
-  console.log('propertiesForSale', propertiesForSale);
   return (
-    <Box>
-      <Banner
-        purpose="RENT A HOME"
-        title1="Rental Homes for "
-        title2="Everyone"
-        desc1="Explore Apartments, Villas, Homes"
-        desc2="and more"
-        buttonText="Explore Renting"
-        linkName="/search?purpose=for-rent"
-        imageURL="/img-1.jpg"
-      />
-      <Flex flexWrap={'wrap'}>
-        {propertiesForRent.map(item => (
-          <Property property={item} key={item.id} />
-        ))}
-      </Flex>
-      <Banner
-        purpose="BUY A HOME"
-        title1="Find, Buy & Own Your "
-        title2="Own Home"
-        desc1="Explore Apartments, Villas, Homes"
-        desc2="and more"
-        buttonText="Explore Buying"
-        linkName="/search?purpose=for-sale"
-        imageURL="/img-2.jpg"
-      />
-      {propertiesForSale.map(item => (
-        <Property property={item} key={item.id} />
-      ))}
-    </Box>
+    <>
+      <Head>
+        <title>Real Estate App - Shamar Morrison</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+      </Head>
+
+      <Box>
+        <Banner
+          purpose="RENT A HOME"
+          title1="Rental Homes for "
+          title2="Everyone"
+          desc1="Explore Apartments, Villas, Homes"
+          desc2="and more"
+          buttonText="Explore Renting"
+          linkName="/search?purpose=for-rent"
+          imageURL="/img-1.jpg"
+        />
+        <Flex flexWrap={'wrap'}>
+          {propertiesForRent.map(item => (
+            <Property property={item} key={item.id} />
+          ))}
+        </Flex>
+        <Banner
+          purpose="BUY A HOME"
+          title1="Find, Buy & Own Your "
+          title2="Own Home"
+          desc1="Explore Apartments, Villas, Homes"
+          desc2="and more"
+          buttonText="Explore Buying"
+          linkName="/search?purpose=for-sale"
+          imageURL="/img-2.jpg"
+        />
+        <Flex flexWrap="wrap">
+          {propertiesForSale.map(item => (
+            <Property property={item} key={item.id} />
+          ))}
+        </Flex>
+      </Box>
+    </>
   );
 };
 
